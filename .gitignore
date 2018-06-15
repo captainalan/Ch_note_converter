@@ -1,5 +1,6 @@
 # Editor things for emacs etc
 *~
+.vscode/
 
 # Python things
 *.pyc
