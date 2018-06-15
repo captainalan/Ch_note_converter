@@ -98,31 +98,71 @@ class Track:
     def writeForRobots(self):
         roboNoteString = [] # Will be what we return
 
+        """Some helper functions"""
         # Length of string in chars to note value conversion
         len_to_val = (lambda x: 16/x) # e.g. c (len = 1) is a 16/1 -> 16th note
+        # Note to Note Conversions from stringy piano music to robots
+        n2n = {
+                'c':'C',
+                'C':'CS',
+                'd':'D',
+                'D':'DS',
+                'e':'E',
+                'E':'ES',
+                'f':'F',
+                'F':'FS',
+                'g':'G',
+                'G':'GS',
+                'a':'A',
+                'A':'AS',
+                'b':'B',
+                'B':'BS' # b-b-b-buuuuulllllhit
+        }
 
-        currentNoteLen = 0 # as we iterate through octaves, keep track of the
-                           # current note's length. Reset to 0 and begin
-                           # counting from one whenever a new note is being
-                           # added.
+        # WRITE FUNCTION TO APPROPRIATELY MAP NOTE NAMES BETWEEN TWO CONVENTIONS
 
-        combined = self.deMeasureTrack()
-        octaves = [int(octave[0]) for octave in combined]
+        """
+        As we iterate through octaves, keep track of the current note's length.
+        Reset to 0 and begin counting from one whenever a new note is being
+        added.  
+        """
 
-        for i in range(2,len(combined[0])-2): # Skip first two characters
-            """combined[0] is an octave; index 0 arbitrarily chosen"""
-            for octave in combined:
-                print(octave[i])
-
-            # Two paths:
-            # (1) all octaves have '-' so just increase duration of previous
-            #     note
-            # (2) there are new note candidates; rank and choose appropriately.
-            #     We cannot do chords, so we must just choose one
-
+        currentNote    = 'start' # Just initializing this
+        currentOctave  = 'start'
+        currentNoteLen = 0  
 
         # Work from a "deMeasured" track; this way note lengths that go through
         # multiple measures are still captured! :)
+        combined = self.deMeasureTrack()
+
+        octaves = [int(octave[0]) for octave in combined]
+
+        for i in range(2,len(combined[0])): # Skip first two characters
+            """combined[0] is an octave; index 0 arbitrarily chosen"""
+            # Imagine a vertical bar, simultaneously covering all octaves 
+            currentBeat = [octave[i] for octave in combined]
+
+            # Two paths:
+            if all([i=='-' for i in currentBeat]):
+                # (1) all octaves have '-' so just increase duration of previous
+                currentNoteLen = currentNoteLen + 1
+                continue
+            elif (currentNote != 'start'):
+                # (2) we're done with current note; output/save it
+                # print("{0}, duration: {1}".format(currentNote,currentNoteLen))
+                print("{{NOTE_{0}{1},{2:.3}}}".format(n2n[currentNote],
+                    currentOctave,len_to_val(currentNoteLen)), end=', ')
+
+            # Choose current note
+            # Current heuristic; just choose highest octave one
+            for i in range(-1,-1 * (len(currentBeat) + 1), -1): # Count backwards
+                if (currentBeat[i] != '-'):
+                    currentNote = currentBeat[i]
+                    currentNoteLen = 1
+                    currentOctave = len(currentBeat) + i
+                    break
+                else:
+                    pass # Do nothing if we're just sustaining a note
 
     def __str__(self):
         return '\n\n'.join([str(measure) for measure in self.measures])
