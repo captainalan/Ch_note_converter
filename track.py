@@ -1,9 +1,7 @@
-from measure import *
+from measure import Measure
 
 class Track:
     """Tracks ("Songs") are composed of measures"""
-    def __init__(self):
-        self.measures = [] # A list of measure objects that make up a track 
 
     def __init__(self, filename):
         self.measures = [] # Read measures from a file
@@ -24,7 +22,7 @@ class Track:
         except:
             print("Oops")
 
-    def writeForRobots():
+    def writeForRobots(self):
         """Print Track such that robots can make music"""
         # Length to note value correspondences
         # Can do more maths and clean this up later

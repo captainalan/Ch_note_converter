@@ -1,4 +1,4 @@
-from track import * 
+from track import Track
 
 filename = 'megalovania.txt'
 # Testing

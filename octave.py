@@ -1,8 +1,5 @@
 class Octave:
     """Relative note values in a given octave"""
-    def __init__(self,num,notes):
-        self.num   = num   # pitch probably isn't the right term here
-        self.notes = notes # string of those notes
     # Something like: 5|--d---------------d-------|
     # will have num=5, notes="--d---------------d-------"
 
