@@ -1,4 +1,8 @@
 # Editor things for emacs etc
 *~
 
+# Python things
+*.pyc
+*.pyo
+__pycache__/
 
