@@ -93,23 +93,33 @@ class Track:
             combined[i].append("|") # ending char
             combined[i] = ''.join(combined[i])
 
-        # Printing to confirm output, remove later
-        for line in combined:
-            print(line) # okay looks fine
-
-        # Now, we can go through `combined` and generate note representations,
-        # counting the lengths of each note
+        return combined
     
     def writeForRobots(self):
-        # Length to note value correspondences
-        # Can do more maths and clean this up later
-        len_to_val = {
-            1:16,
-            2:8,
-            4:4,
-            8:2,
-            16:1
-        }
+        roboNoteString = [] # Will be what we return
+
+        # Length of string in chars to note value conversion
+        len_to_val = (lambda x: 16/x) # e.g. c (len = 1) is a 16/1 -> 16th note
+
+        currentNoteLen = 0 # as we iterate through octaves, keep track of the
+                           # current note's length. Reset to 0 and begin
+                           # counting from one whenever a new note is being
+                           # added.
+
+        combined = self.deMeasureTrack()
+        octaves = [int(octave[0]) for octave in combined]
+
+        for i in range(2,len(combined[0])-2): # Skip first two characters
+            """combined[0] is an octave; index 0 arbitrarily chosen"""
+            for octave in combined:
+                print(octave[i])
+
+            # Two paths:
+            # (1) all octaves have '-' so just increase duration of previous
+            #     note
+            # (2) there are new note candidates; rank and choose appropriately.
+            #     We cannot do chords, so we must just choose one
+
 
         # Work from a "deMeasured" track; this way note lengths that go through
         # multiple measures are still captured! :)

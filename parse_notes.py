@@ -5,5 +5,5 @@ filename = 'megalovania.txt'
 megalovania=Track(filename)
 
 # Get rid of measures and print everything at once
-megalovania.deMeasureTrack()
+megalovania.writeForRobots()
 
