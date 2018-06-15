@@ -10,5 +10,3 @@ class Octave:
 
     def __str__(self):
         return "{0}|{1}".format(self.num,self.notes)
-
-
