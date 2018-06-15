@@ -5,8 +5,13 @@ class Octave:
 
     # Constructor from string
     def __init__(self,line):
-        self.num = line[0]
-        self.notes = line[2:-1]
+        self.num = int(line[0]) # Make this an Int!
+        # Have to do -2 as second index to chop newline
+        self.notes = line[2:-2]
+
+    def __len__(self):
+        return len(self.notes)
 
     def __str__(self):
-        return "{0}|{1}".format(self.num,self.notes)
+        # Had to do || as escape sequence?
+        return "{0}|{1}|".format(self.num,self.notes)
