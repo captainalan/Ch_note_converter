@@ -43,5 +43,5 @@ timing to play the notes.
     return note;
     }
 
-    note_t MegalovaniaShort(int i);
-    robot.playMelody(MegalovaniaShort, 1);
+    note_t SongName(int i);
+    robot.playMelody(SongName, 1);
