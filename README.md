@@ -1,8 +1,9 @@
-# Make Robots Beep Beep Beep
+# Let LinkBots Make Music
 
-## Problem description
+## Problem Description
 
-(Add stuff)
+We want to easily translate music sheets into Ch code! First we start with Python, then we port to C.
+Our choice of music sheets is based on https://pianoletternotes.blogspot.com/.
 
 ### Input Representation
 
@@ -14,5 +15,34 @@ notes (white keys). Uppercase (A C G F) letters are the sharp notes
 timing to play the notes.
 
 ### Output Representation
+#include <linkbot.h>
+CLinkbotI robot;
 
-(What should the output look like?)
+note_t SongName(int i)
+{
+    int len;
+    note_t note;
+    note_t song[ ] =
+    {
+        {NOTE_D4, 32}, {NOTE_D4, 32}, {NOTE_D5, 8}, {NOTE_A4, 4},
+        {NOTE_GS4, 8}, {NOTE_G4, 8}, {NOTE_F4, 8}, {NOTE_D4, 32},
+        {NOTE_F4, 32}, {NOTE_G4, 32}
+    };
+
+    len = sizeof(song) / sizeof(note_t);
+    if (i < len)
+    {
+        note.frequency = song[i].frequency;
+        note.duration = song[i].duration;
+        }
+    else {
+        note.frequency = -1;
+        note.duration = -1;
+        }
+
+    return note;
+}
+
+note_t MegalovaniaShort(int i);
+
+robot.playMelody(MegalovaniaShort, 1);
