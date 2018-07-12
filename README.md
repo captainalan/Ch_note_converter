@@ -15,11 +15,11 @@ notes (white keys). Uppercase (A C G F) letters are the sharp notes
 timing to play the notes.
 
 ### Output Representation
-#include <linkbot.h>
-CLinkbotI robot;
+    #include <linkbot.h>
+    CLinkbotI robot;
 
-note_t SongName(int i)
-{
+    note_t SongName(int i)
+    {
     int len;
     note_t note;
     note_t song[ ] =
@@ -41,8 +41,7 @@ note_t SongName(int i)
         }
 
     return note;
-}
+    }
 
-note_t MegalovaniaShort(int i);
-
-robot.playMelody(MegalovaniaShort, 1);
+    note_t MegalovaniaShort(int i);
+    robot.playMelody(MegalovaniaShort, 1);
