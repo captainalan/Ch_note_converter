@@ -26,7 +26,7 @@ class Track:
         """Get rid of measures and return a simpler representation"""
         """Print Track such that robots can make music"""
 
-        # Get set of all octaves used 
+        # Get set of all octaves used
         octaves = []
         octaveCounts = {}
         for measure in self.measures:
@@ -57,7 +57,7 @@ class Track:
         """
         Combine all measures
         Make sure each measure contains all octaves before combining
-        Write a blank (e.g. "5|---------...--|" octave for unused octaves 
+        Write a blank (e.g. "5|---------...--|" octave for unused octaves
         in each measure.
         """
 
@@ -68,7 +68,7 @@ class Track:
             for o in octaves:
                 if o in measure.getOctaveList():
                     # print("yipee what we got")
-                    measureToWrite.addOctave(str(measureCopy.popOctaveN(o)))                    
+                    measureToWrite.addOctave(str(measureCopy.popOctaveN(o)))
                 else:
                     # print("Gotta add empties")
                     # hardcoding 27 as measure length while I debug
@@ -88,13 +88,13 @@ class Track:
             for j in range(0,len(measure.octaves)):
                 octave = measure.octaves[j]
                 combined[j].append(octave.notes)
-   
+
         for i in range(0,len(combined)):
             combined[i].append("|") # ending char
             combined[i] = ''.join(combined[i])
 
         return combined
-    
+
     def writeForRobots(self):
         roboNoteString = [] # Will be what we return
 
@@ -116,7 +116,7 @@ class Track:
                 'a':'A',
                 'A':'AS',
                 'b':'B',
-                'B':'BS' # b-b-b-buuuuulllllhit
+                'B':'BS'
         }
 
         # WRITE FUNCTION TO APPROPRIATELY MAP NOTE NAMES BETWEEN TWO CONVENTIONS
@@ -124,12 +124,12 @@ class Track:
         """
         As we iterate through octaves, keep track of the current note's length.
         Reset to 0 and begin counting from one whenever a new note is being
-        added.  
+        added.
         """
 
         currentNote    = 'start' # Just initializing this
         currentOctave  = 'start'
-        currentNoteLen = 0  
+        currentNoteLen = 0
 
         # Work from a "deMeasured" track; this way note lengths that go through
         # multiple measures are still captured! :)
@@ -139,7 +139,7 @@ class Track:
 
         for i in range(2,len(combined[0])): # Skip first two characters
             """combined[0] is an octave; index 0 arbitrarily chosen"""
-            # Imagine a vertical bar, simultaneously covering all octaves 
+            # Imagine a vertical bar, simultaneously covering all octaves
             currentBeat = [octave[i] for octave in combined]
 
             # Two paths:
@@ -150,8 +150,8 @@ class Track:
             elif (currentNote != 'start'):
                 # (2) we're done with current note; output/save it
                 # print("{0}, duration: {1}".format(currentNote,currentNoteLen))
-                print("{{NOTE_{0}{1},{2:.3}}}".format(n2n[currentNote],
-                    currentOctave,len_to_val(currentNoteLen)), end=', ')
+                print("{{NOTE_{0}{1},{2}}},".format(n2n[currentNote],
+                    currentOctave,int(round(len_to_val(currentNoteLen))), end=', '))
 
             # Choose current note
             # Current heuristic; just choose highest octave one
@@ -160,11 +160,11 @@ class Track:
                     currentNote = currentBeat[i]
                     currentNoteLen = 1
                     currentOctave = len(currentBeat) + i
+                    if currentOctave == 0 and currentNote == 'A':
+                        currentOctave = 1
                     break
                 else:
                     pass # Do nothing if we're just sustaining a note
 
     def __str__(self):
         return '\n\n'.join([str(measure) for measure in self.measures])
-
-

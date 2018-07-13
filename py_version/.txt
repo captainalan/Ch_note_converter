@@ -1,0 +1,25 @@
+
+#include <linkbot.h>
+CLinkbotI robot;
+
+note_t (int i) {
+    int len;
+    note_t note;
+    note_t song[] = {{NOTE_D3,16.0}
+ };
+
+    len = sizeof(song) / sizeof(note_t);
+    if (i < len) {
+        note.frequency = song[i].frequency;
+        note.duration = song[i].duration;
+    } else {
+        note.frequency = -1;
+        note.duration = -1;
+    }
+
+    return note;
+}
+
+note_t (int i);
+
+robot.playMelody(, 1);
