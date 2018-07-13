@@ -1,10 +1,21 @@
-CC=gcc
-CFLAGS=-I.
+TARGET = parse_notes
+CC = gcc
+CFLAGS = -g -Wall
 
-parse_notes : parse_notes.c
-	gcc -o parse_notes parse_notes.c
+.PHONY : default all clean
 
-.PHONY : clean
+default: $(TARGET)
+all: default
+
+HEADERS = note_reader.h
+OBJECTS = note_reader.o parse_notes.o
+
+%.o: %.c $(HEADERS)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(TARGET): $(OBJECTS)
+	$(CC) $(OBJECTS) -Wall -o $@
 
 clean:
-	rm parse_notes
+	rm -f *.o
+	rm -f $(TARGET)

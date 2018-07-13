@@ -13,6 +13,7 @@ int main(int argc, char **argv){
    */
 
   printf("Hello Robots\n");
+  read_file(); // DO IT WORK?
   
   // megalovania = Track(filename); // this needs to have a declared type
 
