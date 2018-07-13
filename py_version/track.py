@@ -67,10 +67,8 @@ class Track:
             measureCopy = measure # can use mutable methods on this copy
             for o in octaves:
                 if o in measure.getOctaveList():
-                    # print("yipee what we got")
                     measureToWrite.addOctave(str(measureCopy.popOctaveN(o)))
                 else:
-                    # print("Gotta add empties")
                     # hardcoding 27 as measure length while I debug
                     measureToWrite.addOctave("{0}|{1}|".format(o,"-"*26))
             track.append(measureToWrite)
@@ -160,7 +158,7 @@ class Track:
                     currentNote = currentBeat[i]
                     currentNoteLen = 1
                     currentOctave = len(currentBeat) + i
-                    if currentOctave == 0 and currentNote == 'A':
+                    if currentOctave == 0 and currentNote != 'b':
                         currentOctave = 1
                     break
                 else:

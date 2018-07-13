@@ -1,7 +1,7 @@
 from octave import Octave
 
 class Measure:
-    """A measure of music in BLAH notation
+    """A measure of music in specific notation
    
     TODO: ensure that all octaves are of same length
 
