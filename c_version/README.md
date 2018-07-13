@@ -1,6 +1,15 @@
-#include <stdio.h>
-#include "measure.h"
+# Making Robots Sing in C 
 
+We must learn how to not OOP. The Python implementation was written using
+classes and such, so we can't directly translate that program to C. While some
+of the logic within individual functions can be reused, an overall structural
+overhaul is needed.
+
+For maximum portability, everything here will be written in pure C.
+
+## Code snippets that might be useful
+
+```
 class Track
 {
     /* Tracks ("Songs") are composed of measures */
@@ -175,3 +184,4 @@ class Track
         return '\n\n'.join([str(measure) for measure in self.measures])
         */
 }
+```

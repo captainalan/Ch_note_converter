@@ -1,13 +1,18 @@
 #include <stdio.h>
-// #include "track.h"
+#include "note_reader.h"
 
 int main(int argc, char **argv){
 //argv[0] will be myprogram.
 //argv[1] will be myfile.txt.
 
+  /* All parser functions declared in `note_reader.h` (and defined in
+   * `note_reader.c`).
+   *
+   * In this file, do stuff like get command line arguments, store relevant
+   * things in variables/memory to pass to parsing functions...
+   */
 
-
-  printf("Hello World\n");
+  printf("Hello Robots\n");
   
   // megalovania = Track(filename); // this needs to have a declared type
 
