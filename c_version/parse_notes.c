@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "track.h"
+// #include "track.h"
 
 int main(int argc, char **argv){
 //argv[0] will be myprogram.
@@ -7,12 +7,10 @@ int main(int argc, char **argv){
 
 
 
-megalovania = Track(filename); // this needs to have a declared type
+  printf("Hello World\n");
+  
+  // megalovania = Track(filename); // this needs to have a declared type
 
-// Get rid of measures and print everything at once
-megalovania.writeForRobots(); // figure out how this works in C
-
-
-
-
+  // Get rid of measures and print everything at once
+  // megalovania.writeForRobots(); // figure out how this works in C
 }
