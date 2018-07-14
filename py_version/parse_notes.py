@@ -1,15 +1,15 @@
 from track import Track
 
-filename = 'megalovania.txt' # Put music text file you wish to convert to Ch format here
+filename = 'riverflowsinyou.txt' # Put music text file you wish to convert to Ch format here
 # Note: this program only works with the format provided on this site: https://pianoletternotes.blogspot.com/
 
 
 # You will need to edit this every time you make a new file. This is your variable name.
 # Make sure the filename is the same as this variable name when converting to chf files.
-song = 'MegalovaniaStuff' 
+song = 'RiverFlowsInYou' 
 
 # Testing
-megalovania = Track(filename)
+music = Track(filename)
 print("""
 #include <linkbot.h>
 CLinkbotI robot;
@@ -20,7 +20,7 @@ note_t """ + song + """(int i) {
     note_t song[] = {""")
 
 # Get rid of measures and print everything at once
-megalovania.writeForRobots()
+music.writeForRobots()
 
 print("""
  };

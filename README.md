@@ -2,7 +2,7 @@
 
 ## Problem Description
 
-We want to easily translate music sheets into Ch code! First we start with Python, then we port to C.
+We want to easily translate music sheets into Ch code! First we start with Python, then we port to C/Ch.
 Our choice of music sheets is based on https://pianoletternotes.blogspot.com/.
 
 ### Input Representation
