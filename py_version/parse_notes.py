@@ -1,12 +1,13 @@
+# Authors: Alan Wong and Gabriella Quattrone
 from track import Track
 
-filename = 'riverflowsinyou.txt' # Put music text file you wish to convert to Ch format here
+filename = 'supermariotheme.txt' # Put music text file you wish to convert to Ch format here
 # Note: this program only works with the format provided on this site: https://pianoletternotes.blogspot.com/
 
 
 # You will need to edit this every time you make a new file. This is your variable name.
 # Make sure the filename is the same as this variable name when converting to chf files.
-song = 'RiverFlowsInYou' 
+song = 'SuperMarioBros' 
 
 # Testing
 music = Track(filename)
@@ -40,3 +41,8 @@ print("""
 note_t """ +  song + """(int i);
 
 robot.playMelody(""" + song + ", 1);")
+
+# For testing purposes. We're still fixing deMeasureTrack().
+# foo = music.deMeasureTrack()
+# for line in foo:
+#     print(line)

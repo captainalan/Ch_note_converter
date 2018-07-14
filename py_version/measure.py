@@ -1,3 +1,4 @@
+# Authors: Alan Wong and Gabriella Quattrone
 from octave import Octave
 
 class Measure:

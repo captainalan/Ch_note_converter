@@ -1,3 +1,4 @@
+# Authors: Alan Wong and Gabriella Quattrone
 import copy
 from measure import Measure
 
@@ -152,7 +153,6 @@ class Track:
                 continue
             elif (currentNote != 'start'):
                 # (2) we're done with current note; output/save it
-                # print("{0}, duration: {1}".format(currentNote,currentNoteLen))
                 print("{{NOTE_{0}{1},{2}}},".format(n2n[currentNote],
                     currentOctave,int(round(len_to_val(currentNoteLen))), end=', '))
 
@@ -162,7 +162,10 @@ class Track:
                 if (currentBeat[i] != '-'):
                     currentNote = currentBeat[i]
                     currentNoteLen = 1
-                    currentOctave = len(currentBeat) + i
+                    """
+                    We need to get the start of the list that holds the currentnote from the currentBeat
+                    """
+                    currentOctave = octaves[i]
                     if currentOctave == 0 and currentNote != 'b':
                         currentOctave = 1
                     break

@@ -1,3 +1,4 @@
+# Authors: Alan Wong and Gabriella Quattrone
 class Octave:
     """Relative note values in a given octave"""
     # Something like: 5|--d---------------d-------|
@@ -5,7 +6,7 @@ class Octave:
 
     # Constructor from string
     def __init__(self,line):
-        self.num = int(line[0]) # Make this an Int!
+        self.num = int(line[0]) 
         # Have to do -2 as second index to chop newline
         self.notes = line[2:-2]
 
