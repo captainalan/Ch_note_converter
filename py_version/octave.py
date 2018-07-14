@@ -13,5 +13,4 @@ class Octave:
         return len(self.notes)
 
     def __str__(self):
-        # Had to do || as escape sequence?
         return "{0}|{1}|".format(self.num,self.notes)
