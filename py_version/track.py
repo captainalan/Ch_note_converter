@@ -1,3 +1,4 @@
+import copy
 from measure import Measure
 
 class Track:
@@ -64,12 +65,16 @@ class Track:
         track = []
         measureToWrite = Measure() # Empty measure to write stuff to
         for measure in self.measures:
-            measureCopy = measure # can use mutable methods on this copy
+
+            measureCopy = copy.deepcopy(measure) # can use mutable methods on this copy
+
             for o in octaves:
-                if o in measure.getOctaveList():
+                if o in measureCopy.getOctaveList():
                     measureToWrite.addOctave(str(measureCopy.popOctaveN(o)))
                 else:
-                    # hardcoding 27 as measure length while I debug
+                    # If octave o is not in the measure's octave list, then
+                    # write a blank octave by repeating "-"s. 
+                    # (Here 27 is harcoded as measure length while I debug...)
                     measureToWrite.addOctave("{0}|{1}|".format(o,"-"*26))
             track.append(measureToWrite)
             measureToWrite = Measure() # Clear this
@@ -85,7 +90,7 @@ class Track:
             measure = track[i]
             for j in range(0,len(measure.octaves)):
                 octave = measure.octaves[j]
-                combined[j].append(octave.notes)
+                combined[j].append(octave.notes) # octave.notes is None!
 
         for i in range(0,len(combined)):
             combined[i].append("|") # ending char
