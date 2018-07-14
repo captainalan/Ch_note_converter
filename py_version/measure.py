@@ -13,7 +13,7 @@ class Measure:
         try:
             self.octaves.append(Octave(line))
         except:
-            print("Oops. Can't append that")
+            print("Oops. Can't append octave: {}".format(str(line)))
 
     def getMeasureLength(self):
         if not(self.octaves == []):
