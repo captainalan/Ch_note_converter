@@ -7,16 +7,17 @@ class Track:
 
     def __init__(self, filename):
         self.measures = [] # Read measures from a file
-        with open(filename, 'r') as score:
+        with open(filename, 'r') as songFile:
             currentMeasure = Measure() # Make a new measure
-            for line in score:
-                if line != '\n': # While not new line
-                    currentMeasure.addOctave(line) # add line to current thing
-                else:
-                    # At new line, add current measure to list of measures
-                    saveMeasure = currentMeasure
-                    self.measures.append(saveMeasure)
+            for line in songFile: # This adds a new octave to a measure
+                if (line == "\n"): # Blank lines separate measures
+                    self.measures.append(currentMeasure)
                     currentMeasure = Measure() # Reset measure, continue
+                else:
+                    currentMeasure.addOctave(line) # add line to current thing
+            # Append final non-newline terminated measure before closing file
+            # File automatically closed following end of `with` block
+            self.measures.append(currentMeasure) 
 
     def addMeasure(self,measure):
         try:

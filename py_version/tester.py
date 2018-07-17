@@ -9,11 +9,8 @@ song = 'MegalovaniaStuff'
 # Testing
 megalovania = Track(filename)
 foo = megalovania.deMeasureTrack()
+# print(megalovania) # Verfiying all measures are present got proc
+
 for line in foo:
     print(line)
 
-"""
-foo = megalovania.deMeasureTrack()
-for line in foo:
-    print(line)
-"""
