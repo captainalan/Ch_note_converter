@@ -9,10 +9,20 @@ class Measure:
     """
     def __init__(self):
         self.octaves = []
+        self.length = 0
 
     def addOctave(self, line):
+        """If the octave being added is the first one, then use this to set the measure length.
+           Otherwise, ensure that the new octave being added is the same length as the measure 
+           length.""" 
+        if self.octaves == []:
+            self.length = (len(line))
         try:
+            assert len(line) == self.length
             self.octaves.append(Octave(line))
+        except AssertionError:
+            print("Something is wrong with the line length:\n{}".format(str(line)))
+            print("This measure:\n", str(self) )
         except:
             print("Oops. Can't append octave: {}".format(str(line)))
 

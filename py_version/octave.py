@@ -1,4 +1,6 @@
 # Authors: Alan Wong and Gabriella Quattrone
+import re
+
 class Octave:
     """Relative note values in a given octave"""
     # Something like: 5|--d---------------d-------|
@@ -8,7 +10,10 @@ class Octave:
     def __init__(self,line):
         self.num = int(line[0]) 
         # Have to do -2 as second index to chop newline
-        self.notes = line[2:-2]
+        # Read `|` as marking the beginning and end of the string (exclusive)
+        notes = re.search(r"\|(.*)\|", line)
+        self.notes = str(notes.group(1))
+        # self.notes = line[2:-2]
 
     def __len__(self):
         return len(self.notes)

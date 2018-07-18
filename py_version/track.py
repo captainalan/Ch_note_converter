@@ -76,8 +76,10 @@ class Track:
                 else:
                     # If octave o is not in the measure's octave list, then
                     # write a blank octave by repeating "-"s. 
-                    # (Here 27 is harcoded as measure length while I debug...)
-                    measureToWrite.addOctave("{0}|{1}|".format(o,"-"*26))
+
+                    blankLen = 26 # Don't hard code 26 here; get it from somewhere
+
+                    measureToWrite.addOctave("{0}|{1}|".format(o,"-"*blankLen))
             track.append(measureToWrite)
             measureToWrite = Measure() # Clear this
 
