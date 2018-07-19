@@ -9,11 +9,9 @@ class Octave:
     # Constructor from string
     def __init__(self,line):
         self.num = int(line[0]) 
-        # Have to do -2 as second index to chop newline
         # Read `|` as marking the beginning and end of the string (exclusive)
         notes = re.search(r"\|(.*)\|", line)
         self.notes = str(notes.group(1))
-        # self.notes = line[2:-2]
 
     def __len__(self):
         return len(self.notes)

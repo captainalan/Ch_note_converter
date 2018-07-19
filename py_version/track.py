@@ -102,6 +102,10 @@ class Track:
 
         return combined
 
+
+    def writeForTonejs(self):
+        pass
+
     def writeForRobots(self):
         roboNoteString = [] # Will be what we return
 

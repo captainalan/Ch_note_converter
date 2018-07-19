@@ -2,11 +2,6 @@
 from octave import Octave
 
 class Measure:
-    """A measure of music in specific notation
-   
-    TODO: ensure that all octaves are of same length
-
-    """
     def __init__(self):
         self.octaves = []
         self.length = 0
