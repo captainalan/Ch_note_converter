@@ -8,8 +8,8 @@ class Measure:
 
     def addOctave(self, line):
         """If the octave being added is the first one, then use this to set the measure length.
-           Otherwise, ensure that the new octave being added is the same length as the measure 
-           length.""" 
+           Otherwise, ensure that the new octave being added is the same length as the measure
+           length."""
         if self.octaves == []:
             self.length = (len(line))
         try:
@@ -35,7 +35,7 @@ class Measure:
 
     def popOctaveN(self,n):
         """Return first octave of pitch n"""
-        for o in self.octaves:
+        for o in reversed(self.octaves):
             if o.num == n:
                 temp = o
                 self.octaves.remove(o)
@@ -44,5 +44,3 @@ class Measure:
     def __str__(self):
         return '\n'.join([str(octave) for octave in self.octaves]) \
         + '\n'
-
-
