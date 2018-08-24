@@ -7,14 +7,14 @@ filename = 'reflection.txt' # Put music text file you wish to convert to Ch form
 
 # You will need to edit this every time you make a new file. This is your variable name.
 # Make sure the filename is the same as this variable name when converting to chf files.
-song = 'Reflection' 
+song = 'Reflection'
 
 # Testing
 music = Track(filename)
 print("""
+/* File: """ + song + """.chf
+   The function file """ + song + """.chf for melody """ + song + """ */
 #include <linkbot.h>
-CLinkbotI robot;
-
 note_t """ + song + """(int i) {
     int len;
     note_t note;
@@ -36,11 +36,7 @@ print("""
     }
 
     return note;
-}
-
-note_t """ +  song + """(int i);
-
-robot.playMelody(""" + song + ", 1);")
+}""")
 
 # For testing purposes. We're still fixing deMeasureTrack().
 # foo = music.deMeasureTrack()
