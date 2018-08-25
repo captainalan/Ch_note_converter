@@ -1,15 +1,19 @@
 # Authors: Alan Wong and Gabriella Quattrone
+# Note: this program only works with the format provided on this site: https://pianoletternotes.blogspot.com/
+import argparse
 from track import Track
 
-filename = 'reflection.txt' # Put music text file you wish to convert to Ch format here
-# Note: this program only works with the format provided on this site: https://pianoletternotes.blogspot.com/
+parser = argparse.ArgumentParser()
 
+parser.add_argument("filename", help="Path of the file you wish to parse.")
+parser.add_argument("songname", help="Song name must match Ch filename.")
 
-# You will need to edit this every time you make a new file. This is your variable name.
-# Make sure the filename is the same as this variable name when converting to chf files.
-song = 'Reflection'
+args = parser.parse_args()
 
-# Testing
+filename = args.filename
+song = args.songname
+
+# Main
 music = Track(filename)
 print("""
 /* File: """ + song + """.chf
